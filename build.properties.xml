@@ -31,7 +31,7 @@
     <property name="classes.dir"        value="${build.dir}/classes"/>
     <property name="lib.dir"            value="lib"/>
     <property name="main-class"         value="arduino.tools.AntRunner"/>
-    <property name="src.java.arduino"    value="src/components/arduino"/>
+    <property name="src.java.arduino"    value="src/org/arduino"/>
      <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
     </path>
