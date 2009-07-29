@@ -33,6 +33,7 @@ import org.apache.tools.ant.ProjectHelper;
 import org.apache.tools.ant.listener.AnsiColorLogger;
 
 public class AntRunner {
+    	volatile public String Version = "0.1.0"  
 	static public final int MSG_WARN    = Project.MSG_WARN;
 	static public final int MSG_INFO    = Project.MSG_INFO;
 	static public final int MSG_VERBOSE = Project.MSG_VERBOSE;
@@ -42,6 +43,10 @@ public class AntRunner {
 	volatile boolean runSuccessful = false;	
 	volatile String propertyList[];
 	
+	public String getVersion() {
+	    return Version;
+	}
+
 	/**
 	 * 
 	 * @return
@@ -163,6 +168,7 @@ public class AntRunner {
 	 * @param args 
 	 */
 	public static void main(String args[]) {
-		/* Nothing */
+	    AntRunner ant = new AntRunner();
+	    System.out.println("AntRunner v" + ant.getVersion());
 	}
 }
