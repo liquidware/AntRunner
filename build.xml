@@ -18,7 +18,7 @@
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301
    USA
 --> 
-<project name="Ant-Runner" default="build.all">
+<project name="AntRunner" default="build.all">
 
     <!--
         ===================================================================
