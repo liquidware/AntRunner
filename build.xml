@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!--
+   ANT Ant-Runner Buildfile - Builds the Ant-Runner
+   Copyright (C) 2009 Christopher Ladden, Omar Ayub  All rights reserved.
+
+   This library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   This library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this library; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301
+   USA
+--> 
+<project name="Ant-Runner" default="build.all">
+
+    <!--
+        ===================================================================
+         Load the project's properties
+        ===================================================================
+    -->
+    <import file="build.properties.xml"/>
+
+    <!--
+        ===================================================================
+          The project's target definitions
+        ===================================================================
+    -->
+    <target name="clean.all" depends="clean"/>
+    <target name="compile.all" depends="clean, compile"/>
+    <target name="jar.all" depends="compile.all, jar-lib" />
+    <target name="build.all" depends="jar.all"/>
+    <target name="run.all" depends="run"/>
+
+    <!--
+        ===================================================================
+          The project's targets
+        ===================================================================
+    -->
+    <target name="clean">
+        <echoproperties/>
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="compile">
+
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.java.arduino};" destdir="${classes.dir}"
+               classpathref="classpath" source="1.5" target="jsr14"/>
+
+    </target>
+
+    <target name="jar-lib">
+        <jar-lib />
+    </target>
+
+    <target name="run">
+        <run />
+    </target>
+
+    <macrodef name="jar-lib">
+        <sequential>
+            <property name="jar.dir"     value="${build.dir}/jar"/>
+
+            <mkdir dir="${jar.dir}"/>
+            <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+                <manifest>
+                    <attribute name="Main-Class" value="${main-class}"/>
+                </manifest>
+            </jar>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="run">
+        <sequential>
+	        <java fork="true" classname="${main-class}" dir="${build.dir}">
+	            <sysproperty key="java.library.path" value="${jnidir}"/>
+	            <classpath>
+		        <path refid="classpath"/>
+		        <path location="${jar.dir}/${ant.project.name}.jar"/>
+	            </classpath>
+	        </java>
+        </sequential>
+    </macrodef>
+
+</project>

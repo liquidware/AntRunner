@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+   ANT Ant-Runner Buildfile - Builds the Ant-Runner
+   Copyright (C) 2009 Christopher Ladden, Omar Ayub  All rights reserved.
+
+   This library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   This library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this library; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301
+   USA
+-->
+<project name="build.properties" basedir="." default="...">
+    <!--
+        ===================================================================
+         Set the properties related to the build
+        ===================================================================
+    -->
+    <property name="build.version"      value="0" />
+    <property name="repository.url.pub" value="git://github.com/liquidware/AntRunner.git"/>
+
+    <property name="build.dir"          value="build"/>
+    <property name="classes.dir"        value="${build.dir}/classes"/>
+    <property name="lib.dir"            value="lib"/>
+    <property name="main-class"         value="arduino.tools.AntRunner"/>
+    <property name="src.java.arduino"    value="src/components/arduino"/>
+     <path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+    </path>
+
+</project>
