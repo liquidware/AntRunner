@@ -119,7 +119,7 @@ public class AntRunner {
 		 */
 		class AntRunnable implements Runnable {
 
-			@Override
+			//@Override
 			public void run() {
 				runSuccessful = false; //reset the status
 				
