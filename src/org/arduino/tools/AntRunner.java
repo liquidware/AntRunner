@@ -23,7 +23,7 @@ package org.arduino.tools;
 
 import java.io.File;
 import java.io.Writer;
-
+ 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.BuildListener;
 import org.apache.tools.ant.DefaultLogger;
@@ -31,7 +31,7 @@ import org.apache.tools.ant.Main;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.ProjectHelper;
 import org.apache.tools.ant.listener.AnsiColorLogger;
-
+ 
 public class AntRunner {
 	static public final int MSG_WARN    = Project.MSG_WARN;
 	static public final int MSG_INFO    = Project.MSG_INFO;
@@ -81,6 +81,21 @@ public class AntRunner {
 	 */
 	public boolean getLastRunStatus() {
 		return runSuccessful;
+	}
+	
+	/**
+	 * A Busy-wait loop design to wait for the run to complete.
+	 */
+	public void waitForCompletion() {
+		
+		while(this.isRunning()) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	/**
